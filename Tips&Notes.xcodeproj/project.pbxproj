@@ -13,6 +13,13 @@
 		18427EC619E6728900BFC5CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18427EC419E6728900BFC5CD /* Main.storyboard */; };
 		18427EC819E6728900BFC5CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18427EC719E6728900BFC5CD /* Images.xcassets */; };
 		18427ED419E6728900BFC5CD /* Tips_NotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18427ED319E6728900BFC5CD /* Tips_NotesTests.m */; };
+		1856825B19E6796700B5E273 /* TipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856825A19E6796700B5E273 /* TipsViewController.m */; };
+		1856825E19E6797100B5E273 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856825D19E6797100B5E273 /* NotesViewController.m */; };
+		1856826019E687A500B5E273 /* Tips.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1856825F19E687A500B5E273 /* Tips.plist */; };
+		1856826219E6881200B5E273 /* Notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1856826119E6881200B5E273 /* Notes.plist */; };
+		1856826419E6882D00B5E273 /* History.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1856826319E6882D00B5E273 /* History.plist */; };
+		1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856826619E689A400B5E273 /* TipsTableViewCell.m */; };
+		1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1856826719E689A400B5E273 /* TipsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,16 @@
 		18427ECD19E6728900BFC5CD /* Tips&NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tips&NotesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18427ED219E6728900BFC5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18427ED319E6728900BFC5CD /* Tips_NotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tips_NotesTests.m; sourceTree = "<group>"; };
+		1856825919E6796700B5E273 /* TipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsViewController.h; sourceTree = "<group>"; };
+		1856825A19E6796700B5E273 /* TipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsViewController.m; sourceTree = "<group>"; };
+		1856825C19E6797100B5E273 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
+		1856825D19E6797100B5E273 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
+		1856825F19E687A500B5E273 /* Tips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tips.plist; sourceTree = "<group>"; };
+		1856826119E6881200B5E273 /* Notes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Notes.plist; sourceTree = "<group>"; };
+		1856826319E6882D00B5E273 /* History.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = History.plist; sourceTree = "<group>"; };
+		1856826519E689A400B5E273 /* TipsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsTableViewCell.h; sourceTree = "<group>"; };
+		1856826619E689A400B5E273 /* TipsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsTableViewCell.m; sourceTree = "<group>"; };
+		1856826719E689A400B5E273 /* TipsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +100,17 @@
 				18427EBF19E6728900BFC5CD /* AppDelegate.m */,
 				18427EC119E6728900BFC5CD /* ViewController.h */,
 				18427EC219E6728900BFC5CD /* ViewController.m */,
+				1856825919E6796700B5E273 /* TipsViewController.h */,
+				1856825A19E6796700B5E273 /* TipsViewController.m */,
+				1856825C19E6797100B5E273 /* NotesViewController.h */,
+				1856825D19E6797100B5E273 /* NotesViewController.m */,
+				1856826519E689A400B5E273 /* TipsTableViewCell.h */,
+				1856826619E689A400B5E273 /* TipsTableViewCell.m */,
+				1856826719E689A400B5E273 /* TipsTableViewCell.xib */,
 				18427EC419E6728900BFC5CD /* Main.storyboard */,
+				1856825F19E687A500B5E273 /* Tips.plist */,
+				1856826319E6882D00B5E273 /* History.plist */,
+				1856826119E6881200B5E273 /* Notes.plist */,
 				18427EC719E6728900BFC5CD /* Images.xcassets */,
 				18427EBA19E6728900BFC5CD /* Supporting Files */,
 			);
@@ -197,7 +224,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				18427EC619E6728900BFC5CD /* Main.storyboard in Resources */,
+				1856826019E687A500B5E273 /* Tips.plist in Resources */,
+				1856826219E6881200B5E273 /* Notes.plist in Resources */,
 				18427EC819E6728900BFC5CD /* Images.xcassets in Resources */,
+				1856826419E6882D00B5E273 /* History.plist in Resources */,
+				1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1856825E19E6797100B5E273 /* NotesViewController.m in Sources */,
 				18427EC319E6728900BFC5CD /* ViewController.m in Sources */,
 				18427EC019E6728900BFC5CD /* AppDelegate.m in Sources */,
+				1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */,
+				1856825B19E6796700B5E273 /* TipsViewController.m in Sources */,
 				18427EBD19E6728900BFC5CD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -320,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -333,6 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Tips&Notes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -344,6 +379,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Tips&Notes/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -362,6 +398,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tips&NotesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,6 +415,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tips&NotesTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -404,6 +442,7 @@
 				18427ED919E6728900BFC5CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18427EDA19E6728900BFC5CD /* Build configuration list for PBXNativeTarget "Tips&NotesTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +451,7 @@
 				18427EDC19E6728900BFC5CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
