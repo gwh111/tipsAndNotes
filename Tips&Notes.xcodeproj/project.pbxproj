@@ -20,6 +20,10 @@
 		1856826419E6882D00B5E273 /* History.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1856826319E6882D00B5E273 /* History.plist */; };
 		1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856826619E689A400B5E273 /* TipsTableViewCell.m */; };
 		1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1856826719E689A400B5E273 /* TipsTableViewCell.xib */; };
+		18B1490E19E77E9E00517F4A /* NewTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1490D19E77E9E00517F4A /* NewTipsView.m */; };
+		18B1491219E7873700517F4A /* DKCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1491119E7873700517F4A /* DKCircleButton.m */; };
+		18B1491419E7C3B000517F4A /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B1491319E7C3B000517F4A /* button.png */; };
+		18B1491619E7C64200517F4A /* button_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B1491519E7C64200517F4A /* button_clear.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,12 @@
 		1856826519E689A400B5E273 /* TipsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsTableViewCell.h; sourceTree = "<group>"; };
 		1856826619E689A400B5E273 /* TipsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsTableViewCell.m; sourceTree = "<group>"; };
 		1856826719E689A400B5E273 /* TipsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsTableViewCell.xib; sourceTree = "<group>"; };
+		18B1490C19E77E9E00517F4A /* NewTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTipsView.h; sourceTree = "<group>"; };
+		18B1490D19E77E9E00517F4A /* NewTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTipsView.m; sourceTree = "<group>"; };
+		18B1491019E7873700517F4A /* DKCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButton.h; sourceTree = "<group>"; };
+		18B1491119E7873700517F4A /* DKCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButton.m; sourceTree = "<group>"; };
+		18B1491319E7C3B000517F4A /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		18B1491519E7C64200517F4A /* button_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_clear.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,17 +106,15 @@
 		18427EB919E6728900BFC5CD /* Tips&Notes */ = {
 			isa = PBXGroup;
 			children = (
+				18B1490F19E7873700517F4A /* DKCircleButton */,
 				18427EBE19E6728900BFC5CD /* AppDelegate.h */,
 				18427EBF19E6728900BFC5CD /* AppDelegate.m */,
 				18427EC119E6728900BFC5CD /* ViewController.h */,
 				18427EC219E6728900BFC5CD /* ViewController.m */,
-				1856825919E6796700B5E273 /* TipsViewController.h */,
-				1856825A19E6796700B5E273 /* TipsViewController.m */,
-				1856825C19E6797100B5E273 /* NotesViewController.h */,
-				1856825D19E6797100B5E273 /* NotesViewController.m */,
-				1856826519E689A400B5E273 /* TipsTableViewCell.h */,
-				1856826619E689A400B5E273 /* TipsTableViewCell.m */,
-				1856826719E689A400B5E273 /* TipsTableViewCell.xib */,
+				18B1491319E7C3B000517F4A /* button.png */,
+				18B1491519E7C64200517F4A /* button_clear.png */,
+				18B1490A19E77DCC00517F4A /* 纸条 */,
+				18B1490B19E77DD700517F4A /* 笔记 */,
 				18427EC419E6728900BFC5CD /* Main.storyboard */,
 				1856825F19E687A500B5E273 /* Tips.plist */,
 				1856826319E6882D00B5E273 /* History.plist */,
@@ -141,6 +149,38 @@
 				18427ED219E6728900BFC5CD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18B1490A19E77DCC00517F4A /* 纸条 */ = {
+			isa = PBXGroup;
+			children = (
+				1856825919E6796700B5E273 /* TipsViewController.h */,
+				1856825A19E6796700B5E273 /* TipsViewController.m */,
+				18B1490C19E77E9E00517F4A /* NewTipsView.h */,
+				18B1490D19E77E9E00517F4A /* NewTipsView.m */,
+				1856826519E689A400B5E273 /* TipsTableViewCell.h */,
+				1856826619E689A400B5E273 /* TipsTableViewCell.m */,
+				1856826719E689A400B5E273 /* TipsTableViewCell.xib */,
+			);
+			name = "纸条";
+			sourceTree = "<group>";
+		};
+		18B1490B19E77DD700517F4A /* 笔记 */ = {
+			isa = PBXGroup;
+			children = (
+				1856825C19E6797100B5E273 /* NotesViewController.h */,
+				1856825D19E6797100B5E273 /* NotesViewController.m */,
+			);
+			name = "笔记";
+			sourceTree = "<group>";
+		};
+		18B1490F19E7873700517F4A /* DKCircleButton */ = {
+			isa = PBXGroup;
+			children = (
+				18B1491019E7873700517F4A /* DKCircleButton.h */,
+				18B1491119E7873700517F4A /* DKCircleButton.m */,
+			);
+			path = DKCircleButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,10 +263,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B1491419E7C3B000517F4A /* button.png in Resources */,
 				18427EC619E6728900BFC5CD /* Main.storyboard in Resources */,
 				1856826019E687A500B5E273 /* Tips.plist in Resources */,
 				1856826219E6881200B5E273 /* Notes.plist in Resources */,
 				18427EC819E6728900BFC5CD /* Images.xcassets in Resources */,
+				18B1491619E7C64200517F4A /* button_clear.png in Resources */,
 				1856826419E6882D00B5E273 /* History.plist in Resources */,
 				1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */,
 			);
@@ -246,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B1491219E7873700517F4A /* DKCircleButton.m in Sources */,
+				18B1490E19E77E9E00517F4A /* NewTipsView.m in Sources */,
 				1856825E19E6797100B5E273 /* NotesViewController.m in Sources */,
 				18427EC319E6728900BFC5CD /* ViewController.m in Sources */,
 				18427EC019E6728900BFC5CD /* AppDelegate.m in Sources */,

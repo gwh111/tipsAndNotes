@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TipsTableViewCell : UITableViewCell
+@interface TipsTableViewCell : UITableViewCell{
+    UIButton *editButton;
+    UIButton *doneButton;
+    UIButton *deleButton;
+}
+
+@property (nonatomic,retain)IBOutlet UIButton *editButton;
+@property (nonatomic,retain)IBOutlet UIButton *doneButton;
+@property (nonatomic,retain)IBOutlet UIButton *deleButton;
 
 @end

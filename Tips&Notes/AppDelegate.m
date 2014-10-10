@@ -23,7 +23,33 @@
     UINavigationController *navController =[[UINavigationController alloc] initWithRootViewController:appStartController];
     navController.navigationBarHidden=YES;
     self.window.rootViewController=navController;
+    
+//    // Handle launching from a notification
+//	UILocalNotification *localNotif =
+//	[launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+//    if (localNotif) {
+//		NSLog(@"111Recieved Notification %@",localNotif);
+//	}
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
+	// Handle the notificaton when the app is running
+	NSLog(@"Recieved Notification %@",notif);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+//                          
+//                                                    message:notif.alertBody
+//                          
+//                                                   delegate:nil
+//                          
+//                                          cancelButtonTitle:@"确定"
+//                          
+//                                          otherButtonTitles:nil];
+//    
+//    [alert show];
+    
+    //这里，你就可以通过notification的useinfo，干一些你想做的事情了
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
