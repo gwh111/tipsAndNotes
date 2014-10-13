@@ -65,6 +65,42 @@ int color=1;
     }];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (1 == range.length) {//按下回格键
+        return YES;
+    }
+    
+    if ([text isEqualToString:@"\n"]) {//按下return键
+        
+        if (tipsTextView.text.length==0) {
+            UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, Content Cannot Be Nil" delegate:nil cancelButtonTitle:@"Write Something" otherButtonTitles:nil, nil];
+            [alt show];
+        }else{
+            [textView resignFirstResponder];
+            isDone=1;
+            [UIView animateWithDuration:0.25f animations:^{
+                nextButton.alpha=0;
+                [nextButton setTitle:@"Done" forState:UIControlStateNormal];
+                [nextButton setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+                [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }completion:^(BOOL finished){
+                [UIView animateWithDuration:0.25f animations:^{
+                    nextButton.alpha=1;
+                }];
+                
+            }];
+        }
+ 
+        return NO;
+    }else {
+        if ([textView.text length] < 100) {//判断字符个数
+            return YES;
+        }
+    }
+    return NO;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

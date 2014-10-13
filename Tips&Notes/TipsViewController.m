@@ -23,6 +23,7 @@ UIButton *nextButton;
 UITableView *mainTableView;
 
 @implementation TipsViewController
+@synthesize mainTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +48,7 @@ UITableView *mainTableView;
     navImageView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     [self.view addSubview:navImageView];
     
-    mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(10, 70, self.view.bounds.size.width-20, self.view.bounds.size.height-170)];
+    mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width-10, self.view.bounds.size.height-180)];
     mainTableView.delegate=self;
     mainTableView.dataSource=self;
     mainTableView.backgroundColor=[UIColor clearColor];
@@ -73,7 +74,7 @@ UITableView *mainTableView;
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *plistPath = [paths objectAtIndex:0];
     //得到完整的文件名
-    NSString *filename=[plistPath stringByAppendingPathComponent:@"tips.plist"];
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"Tips.plist"];
     //读出来看看
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
     tipsPlist=data;
@@ -83,7 +84,7 @@ UITableView *mainTableView;
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *plistPath = [paths objectAtIndex:0];
     //得到完整的文件名
-    NSString *filename=[plistPath stringByAppendingPathComponent:@"tips.plist"];
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"Tips.plist"];
     //输入写入
     [tipsPlist writeToFile:filename atomically:YES];
 }
@@ -98,7 +99,13 @@ UITableView *mainTableView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    NSUInteger num=[[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section]length];
+    if (num>33) {
+        return 70;
+    }else{
+        return 50;
+    }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -108,7 +115,26 @@ UITableView *mainTableView;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TipsTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.textLabel.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
+    NSString *contentString=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
+    cell.contentTextView.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
+    NSLog(@"length=%lu",(unsigned long)cell.contentTextView.text.length);
+    [cell.contentTextView setFont:[UIFont fontWithName:@"Courier New" size:14]];
+    
+    NSString *string1 = @"This is a string";
+    
+    NSString *string2 = @"\n";
+    
+    NSRange range = [contentString rangeOfString:string2];
+    
+    NSUInteger location = range.location;
+    
+    NSUInteger leight = range.length;
+    
+    NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@"Location:%lu,Leight:%lu",(unsigned long)location,(unsigned long)leight]];
+    
+    NSLog(@"astring:%@",astring);
+    
+    cell.timeLabel.text=[[tipsPlist objectForKey:@"time"]objectAtIndex:indexPath.section];;
     cell.backgroundColor=[self myColor:[[[tipsPlist objectForKey:@"color"]objectAtIndex:indexPath.section]intValue]];
     [cell.layer setMasksToBounds:YES];
     [cell.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -117,15 +143,14 @@ UITableView *mainTableView;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [mainTableView deselectRowAtIndexPath:[mainTableView indexPathForSelectedRow] animated:NO];
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 11;
+    return 5;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 11)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 5)];
     return view;
 }
 

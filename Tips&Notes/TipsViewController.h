@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TipsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
-    
+    UITableView *mainTableView;
 }
 
+@property (nonatomic,retain) UITableView *mainTableView;
 @end
