@@ -11,16 +11,17 @@
 #import "DKCircleButton.h"
 #import "NewTipsView.h"
 
+#import "HistoryViewController.h"
+
 @interface TipsViewController ()
 
 @end
 
 NSMutableDictionary *tipsPlist;
+NSArray *heightArray;
 //newTips
-UITextView *tipsTextView;
-UIButton *cancelButton;
-UIButton *nextButton;
-UITableView *mainTableView;
+
+id deleteObj;
 
 @implementation TipsViewController
 @synthesize mainTableView;
@@ -41,12 +42,21 @@ UITableView *mainTableView;
     self.navigationController.navigationBarHidden=YES;
     self.view.backgroundColor=[UIColor colorWithRed:248/255.f green:248/255.f blue:248/255.f alpha:1];
     
+    heightArray=[[NSArray alloc]init];
     tipsPlist=[[NSMutableDictionary alloc]init];
     [self readPlistFile];
+    [self getTextViewHeight];
     
     UIImageView *navImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     navImageView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     [self.view addSubview:navImageView];
+    
+    UIButton *historyButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    historyButton.backgroundColor=[UIColor clearColor];
+    historyButton.frame=CGRectMake(self.view.bounds.size.width-50, 20, 50, 50);
+    [historyButton setBackgroundImage:[UIImage imageNamed:@"more.png"] forState:UIControlStateNormal];
+    [historyButton addTarget:self action:@selector(historyButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:historyButton];
     
     mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width-10, self.view.bounds.size.height-180)];
     mainTableView.delegate=self;
@@ -67,6 +77,7 @@ UITableView *mainTableView;
     addButton.tag=0;
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(renew:) name:@"NewTips" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(delet:) name:@"DeleteTips" object:nil];
 }
 
 - (void)readPlistFile{
@@ -88,6 +99,26 @@ UITableView *mainTableView;
     //输入写入
     [tipsPlist writeToFile:filename atomically:YES];
 }
+- (void)deletePlistFile:(int)tag{
+    for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSLog(@"info=%@",noti.userInfo);
+        if ([[noti.userInfo objectForKey:[[tipsPlist objectForKey:@"notifyName"]objectAtIndex:tag]]isEqualToString:@"someValue"]) {
+            NSLog(@"cancel");
+            [[UIApplication sharedApplication] cancelLocalNotification:noti];
+        }
+        
+    }
+    
+    [[tipsPlist objectForKey:@"text"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"time"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"color"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"notifyName"]removeObjectAtIndex:tag];
+    [self writePlistFile];
+    tipsPlist=[[NSMutableDictionary alloc]init];
+    [self readPlistFile];
+    [self getTextViewHeight];
+    [mainTableView reloadData];
+}
 
 //tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -99,13 +130,7 @@ UITableView *mainTableView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSUInteger num=[[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section]length];
-    if (num>33) {
-        return 70;
-    }else{
-        return 50;
-    }
-
+    return [[heightArray objectAtIndex:indexPath.section]floatValue]+65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,26 +140,9 @@ UITableView *mainTableView;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TipsTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSString *contentString=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
     cell.contentTextView.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
-    NSLog(@"length=%lu",(unsigned long)cell.contentTextView.text.length);
-    [cell.contentTextView setFont:[UIFont fontWithName:@"Courier New" size:14]];
-    
-    NSString *string1 = @"This is a string";
-    
-    NSString *string2 = @"\n";
-    
-    NSRange range = [contentString rangeOfString:string2];
-    
-    NSUInteger location = range.location;
-    
-    NSUInteger leight = range.length;
-    
-    NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@"Location:%lu,Leight:%lu",(unsigned long)location,(unsigned long)leight]];
-    
-    NSLog(@"astring:%@",astring);
-    
-    cell.timeLabel.text=[[tipsPlist objectForKey:@"time"]objectAtIndex:indexPath.section];;
+    cell.timeLabel.text=[[tipsPlist objectForKey:@"time"]objectAtIndex:indexPath.section];
+    cell.upButton.tag=indexPath.section;
     cell.backgroundColor=[self myColor:[[[tipsPlist objectForKey:@"color"]objectAtIndex:indexPath.section]intValue]];
     [cell.layer setMasksToBounds:YES];
     [cell.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -161,23 +169,49 @@ UITableView *mainTableView;
         NSLog(@"NewTips");
         tipsPlist=[[NSMutableDictionary alloc]init];
         [self readPlistFile];
-        
+        [self getTextViewHeight];
         [mainTableView reloadData];
     }
 }
-
+- (void) delet:(NSNotification*) notification{
+    id obj = [notification object];//获取到传递的对象
+    NSLog(@"butt=%@",obj);
+    
+    UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"This Process Can Not Be Recovered, Are You Sure To Delet?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Delete", nil];
+    [alt show];
+    deleteObj=obj;
+}
 - (UIColor*) myColor:(int)colorNumber{
     UIColor *color=[UIColor clearColor];
     if (colorNumber==1) {
-        color=[UIColor colorWithRed:255 green:120/255.f blue:120/255.f alpha:1];
+        color=[UIColor colorWithRed:255 green:174/255.f blue:185/255.f alpha:0.9];
     }else if (colorNumber==2){
-        color=[UIColor colorWithRed:255 green:255 blue:120/255.f alpha:1];
+        color=[UIColor colorWithRed:255 green:246/255.f blue:143/255.f alpha:0.9];
     }else if (colorNumber==3){
-        color=[UIColor colorWithRed:120/255.f green:255 blue:120/255.f alpha:1];
+        color=[UIColor colorWithRed:154/255.f green:255 blue:154/255.f alpha:0.9];
     }else if (colorNumber==4){
-        color=[UIColor colorWithRed:120/255.f green:120/255.f blue:255 alpha:1];
+        color=[UIColor colorWithRed:99/255.f green:184/255.f blue:255 alpha:0.9];
     }
     return color;
+}
+
+- (void)getTextViewHeight{
+    heightArray=[[NSArray alloc]init];
+    UITextView *text=[[UITextView alloc]initWithFrame:CGRectMake(0, 100, 300, 40)];
+    text.font=[UIFont systemFontOfSize:14];
+    NSUInteger num=[[tipsPlist objectForKey:@"text"]count];
+    for (int i=0; i<num; i++) {
+        text.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:i];
+        
+        CGFloat fixedWidth = text.frame.size.width;
+        CGSize newSize = [text sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+        CGRect newFrame = text.frame;
+        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+        NSString *height=[NSString stringWithFormat:@"%f",newFrame.size.height];
+        
+        heightArray=[heightArray arrayByAddingObject:height];
+    }
+    NSLog(@"content=%@",heightArray);
 }
 
 - (void)didReceiveMemoryWarning
@@ -204,6 +238,11 @@ UITableView *mainTableView;
     }
 }
 
+- (void)historyButton{
+    HistoryViewController *history=[[HistoryViewController alloc]init];
+    [self.navigationController pushViewController:history animated:YES];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -214,5 +253,12 @@ UITableView *mainTableView;
     // Pass the selected object to the new view controller.
 }
 */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [self deletePlistFile:[deleteObj intValue]];
+        UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Delet sucess!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alt show];
+    }
+}
 
 @end

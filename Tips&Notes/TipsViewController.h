@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TipsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface TipsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>{
     UITableView *mainTableView;
 }
 

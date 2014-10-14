@@ -14,6 +14,7 @@
     UIButton *deleButton;
     
     UILabel *timeLabel;
+    UILabel *titleLabel;
     UITextView *contentTextView;
     
     UIButton *upButton;
@@ -24,6 +25,7 @@
 @property (nonatomic,retain)IBOutlet UIButton *deleButton;
 
 @property (nonatomic,retain)IBOutlet UILabel *timeLabel;
+@property (nonatomic,retain)IBOutlet UILabel *titleLabel;
 @property (nonatomic,retain)IBOutlet UITextView *contentTextView;
 
 @property (nonatomic,retain) UIButton *upButton;

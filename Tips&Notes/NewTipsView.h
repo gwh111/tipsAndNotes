@@ -12,6 +12,7 @@
     UITextView *tipsTextView;
     UIButton *nextButton;
     UIDatePicker *datePicker;
+    
 }
 
 @property(nonatomic,retain)UITextView *tipsTextView;

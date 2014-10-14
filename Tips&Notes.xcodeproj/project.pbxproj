@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1807368419ECC41B00EE4F6A /* tipsbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1807368319ECC41B00EE4F6A /* tipsbackground.png */; };
+		1807369D19ED159A00EE4F6A /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1807369C19ED159A00EE4F6A /* HistoryViewController.m */; };
+		1807369F19ED196B00EE4F6A /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 1807369E19ED196B00EE4F6A /* more.png */; };
+		180736A319ED217300EE4F6A /* TipsHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180736A119ED217300EE4F6A /* TipsHistoryTableViewCell.m */; };
+		180736A419ED217300EE4F6A /* TipsHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180736A219ED217300EE4F6A /* TipsHistoryTableViewCell.xib */; };
 		18427EBD19E6728900BFC5CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18427EBC19E6728900BFC5CD /* main.m */; };
 		18427EC019E6728900BFC5CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18427EBF19E6728900BFC5CD /* AppDelegate.m */; };
 		18427EC319E6728900BFC5CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18427EC219E6728900BFC5CD /* ViewController.m */; };
@@ -38,6 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1807368319ECC41B00EE4F6A /* tipsbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tipsbackground.png; sourceTree = "<group>"; };
+		1807369B19ED159A00EE4F6A /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		1807369C19ED159A00EE4F6A /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		1807369E19ED196B00EE4F6A /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
+		180736A019ED217300EE4F6A /* TipsHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsHistoryTableViewCell.h; sourceTree = "<group>"; };
+		180736A119ED217300EE4F6A /* TipsHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsHistoryTableViewCell.m; sourceTree = "<group>"; };
+		180736A219ED217300EE4F6A /* TipsHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		18427EB719E6728900BFC5CD /* Tips&Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tips&Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18427EBB19E6728900BFC5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18427EBC19E6728900BFC5CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,6 +125,8 @@
 				18427EBF19E6728900BFC5CD /* AppDelegate.m */,
 				18427EC119E6728900BFC5CD /* ViewController.h */,
 				18427EC219E6728900BFC5CD /* ViewController.m */,
+				1807369E19ED196B00EE4F6A /* more.png */,
+				1807368319ECC41B00EE4F6A /* tipsbackground.png */,
 				189C767619EBA7F600F4F0D5 /* clock.png */,
 				18B1491319E7C3B000517F4A /* button.png */,
 				18B1491519E7C64200517F4A /* button_clear.png */,
@@ -159,11 +173,16 @@
 			children = (
 				1856825919E6796700B5E273 /* TipsViewController.h */,
 				1856825A19E6796700B5E273 /* TipsViewController.m */,
+				1807369B19ED159A00EE4F6A /* HistoryViewController.h */,
+				1807369C19ED159A00EE4F6A /* HistoryViewController.m */,
 				18B1490C19E77E9E00517F4A /* NewTipsView.h */,
 				18B1490D19E77E9E00517F4A /* NewTipsView.m */,
 				1856826519E689A400B5E273 /* TipsTableViewCell.h */,
 				1856826619E689A400B5E273 /* TipsTableViewCell.m */,
 				1856826719E689A400B5E273 /* TipsTableViewCell.xib */,
+				180736A019ED217300EE4F6A /* TipsHistoryTableViewCell.h */,
+				180736A119ED217300EE4F6A /* TipsHistoryTableViewCell.m */,
+				180736A219ED217300EE4F6A /* TipsHistoryTableViewCell.xib */,
 			);
 			name = "纸条";
 			sourceTree = "<group>";
@@ -268,9 +287,12 @@
 			files = (
 				189C767719EBA7F600F4F0D5 /* clock.png in Resources */,
 				18B1491419E7C3B000517F4A /* button.png in Resources */,
+				180736A419ED217300EE4F6A /* TipsHistoryTableViewCell.xib in Resources */,
 				18427EC619E6728900BFC5CD /* Main.storyboard in Resources */,
 				1856826019E687A500B5E273 /* Tips.plist in Resources */,
 				1856826219E6881200B5E273 /* Notes.plist in Resources */,
+				1807368419ECC41B00EE4F6A /* tipsbackground.png in Resources */,
+				1807369F19ED196B00EE4F6A /* more.png in Resources */,
 				18427EC819E6728900BFC5CD /* Images.xcassets in Resources */,
 				18B1491619E7C64200517F4A /* button_clear.png in Resources */,
 				1856826419E6882D00B5E273 /* History.plist in Resources */,
@@ -294,7 +316,9 @@
 			files = (
 				18B1491219E7873700517F4A /* DKCircleButton.m in Sources */,
 				18B1490E19E77E9E00517F4A /* NewTipsView.m in Sources */,
+				1807369D19ED159A00EE4F6A /* HistoryViewController.m in Sources */,
 				1856825E19E6797100B5E273 /* NotesViewController.m in Sources */,
+				180736A319ED217300EE4F6A /* TipsHistoryTableViewCell.m in Sources */,
 				18427EC319E6728900BFC5CD /* ViewController.m in Sources */,
 				18427EC019E6728900BFC5CD /* AppDelegate.m in Sources */,
 				1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */,

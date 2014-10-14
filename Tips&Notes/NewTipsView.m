@@ -11,6 +11,9 @@
 @implementation NewTipsView
 bool isDone=0;
 int color=1;
+NSDate *itemDate;
+NSString *notifyName;
+NSString *timeString;
 @synthesize tipsTextView,nextButton,datePicker;
 
 - (id)initWithFrame:(CGRect)frame
@@ -19,8 +22,8 @@ int color=1;
     if (self) {
         // Initialization code
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        tipsTextView=[[UITextView alloc]initWithFrame:CGRectMake(10, 80, self.bounds.size.width-20, self.bounds.size.height-350)];
-        tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:120/255.f blue:120/255.f alpha:1];
+        tipsTextView=[[UITextView alloc]initWithFrame:CGRectMake(10, 80, self.bounds.size.width-20, self.bounds.size.height-380)];
+        tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:174/255.f blue:185/255.f alpha:0.9];
         tipsTextView.text=@"";
         tipsTextView.textColor=[UIColor blackColor];
         tipsTextView.font=[UIFont systemFontOfSize:14];
@@ -65,41 +68,41 @@ int color=1;
     }];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if (1 == range.length) {//按下回格键
-        return YES;
-    }
-    
-    if ([text isEqualToString:@"\n"]) {//按下return键
-        
-        if (tipsTextView.text.length==0) {
-            UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, Content Cannot Be Nil" delegate:nil cancelButtonTitle:@"Write Something" otherButtonTitles:nil, nil];
-            [alt show];
-        }else{
-            [textView resignFirstResponder];
-            isDone=1;
-            [UIView animateWithDuration:0.25f animations:^{
-                nextButton.alpha=0;
-                [nextButton setTitle:@"Done" forState:UIControlStateNormal];
-                [nextButton setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
-                [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            }completion:^(BOOL finished){
-                [UIView animateWithDuration:0.25f animations:^{
-                    nextButton.alpha=1;
-                }];
-                
-            }];
-        }
- 
-        return NO;
-    }else {
-        if ([textView.text length] < 100) {//判断字符个数
-            return YES;
-        }
-    }
-    return NO;
-}
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+//{
+//    if (1 == range.length) {//按下回格键
+//        return YES;
+//    }
+//    
+//    if ([text isEqualToString:@"\n"]) {//按下return键
+//        
+//        if (tipsTextView.text.length==0) {
+//            UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, Content Cannot Be Nil" delegate:nil cancelButtonTitle:@"Write Something" otherButtonTitles:nil, nil];
+//            [alt show];
+//        }else{
+//            [textView resignFirstResponder];
+//            isDone=1;
+//            [UIView animateWithDuration:0.25f animations:^{
+//                nextButton.alpha=0;
+//                [nextButton setTitle:@"Done" forState:UIControlStateNormal];
+//                [nextButton setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+//                [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            }completion:^(BOOL finished){
+//                [UIView animateWithDuration:0.25f animations:^{
+//                    nextButton.alpha=1;
+//                }];
+//                
+//            }];
+//        }
+// 
+//        return NO;
+//    }else {
+//        if ([textView.text length] < 100) {//判断字符个数
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -112,8 +115,8 @@ int color=1;
 
 - (void)colorButton{
     UIButton *bt1=[UIButton buttonWithType:UIButtonTypeCustom];
-    bt1.frame=CGRectMake(self.bounds.size.width/2-75, self.bounds.size.height-260, 30, 30);
-    bt1.backgroundColor=[UIColor colorWithRed:255 green:120/255.f blue:120/255.f alpha:1];
+    bt1.frame=CGRectMake(self.bounds.size.width/2-75, self.bounds.size.height-290, 30, 30);
+    bt1.backgroundColor=[UIColor colorWithRed:255 green:174/255.f blue:185/255.f alpha:0.9];
     bt1.highlighted=NO;
     [bt1.layer setMasksToBounds:YES];
     [bt1.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -122,8 +125,8 @@ int color=1;
     bt1.tag=1;
     
     UIButton *bt2=[UIButton buttonWithType:UIButtonTypeCustom];
-    bt2.frame=CGRectMake(self.bounds.size.width/2-35, self.bounds.size.height-260, 30, 30);
-    bt2.backgroundColor=[UIColor colorWithRed:255 green:255 blue:120/255.f alpha:1];
+    bt2.frame=CGRectMake(self.bounds.size.width/2-35, self.bounds.size.height-290, 30, 30);
+    bt2.backgroundColor=[UIColor colorWithRed:255 green:246/255.f blue:143/255.f alpha:0.9];
     bt2.highlighted=NO;
     [bt2.layer setMasksToBounds:YES];
     [bt2.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -132,8 +135,8 @@ int color=1;
     bt2.tag=2;
     
     UIButton *bt3=[UIButton buttonWithType:UIButtonTypeCustom];
-    bt3.frame=CGRectMake(self.bounds.size.width/2+5, self.bounds.size.height-260, 30, 30);
-    bt3.backgroundColor=[UIColor colorWithRed:120/255.f green:255 blue:120/255.f alpha:1];
+    bt3.frame=CGRectMake(self.bounds.size.width/2+5, self.bounds.size.height-290, 30, 30);
+    bt3.backgroundColor=[UIColor colorWithRed:154/255.f green:255 blue:154/255.f alpha:0.9];
     bt3.highlighted=NO;
     [bt3.layer setMasksToBounds:YES];
     [bt3.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -142,8 +145,8 @@ int color=1;
     bt3.tag=3;
     
     UIButton *bt4=[UIButton buttonWithType:UIButtonTypeCustom];
-    bt4.frame=CGRectMake(self.bounds.size.width/2+45, self.bounds.size.height-260, 30, 30);
-    bt4.backgroundColor=[UIColor colorWithRed:120/255.f green:120/255.f blue:255 alpha:1];
+    bt4.frame=CGRectMake(self.bounds.size.width/2+45, self.bounds.size.height-290, 30, 30);
+    bt4.backgroundColor=[UIColor colorWithRed:99/255.f green:184/255.f blue:255 alpha:0.9];
     bt4.highlighted=NO;
     [bt4.layer setMasksToBounds:YES];
     [bt4.layer setCornerRadius:5.0];//设置矩形四个圆角半径
@@ -152,7 +155,7 @@ int color=1;
     bt4.tag=4;
     
     UIButton *cancelButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.frame=CGRectMake(10, self.bounds.size.height-260, 60, 30);
+    cancelButton.frame=CGRectMake(10, self.bounds.size.height-290, 60, 30);
     cancelButton.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     cancelButton.highlighted=NO;
 //    cancelButton.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -167,7 +170,7 @@ int color=1;
     cancelButton.tag=0;
     
     nextButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-260, 60, 30);
+    nextButton.frame=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-290, 60, 30);
     nextButton.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     nextButton.highlighted=NO;
 //    nextButton.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -187,28 +190,32 @@ int color=1;
     if (button.tag==1) {
         color=1;
         [UIView animateWithDuration:0.5f animations:^{
-        tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:120/255.f blue:120/255.f alpha:1];
+        tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:174/255.f blue:185/255.f alpha:0.9];
+            
         } completion:^(BOOL finished) {
             
         }];
     }else if (button.tag==2){
         color=2;
         [UIView animateWithDuration:0.5f animations:^{
-            tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:255 blue:120/255.f alpha:1];
+            tipsTextView.backgroundColor=[UIColor colorWithRed:255 green:246/255.f blue:143/255.f alpha:0.9];
+            
         } completion:^(BOOL finished) {
             
         }];
     }else if (button.tag==3){
         color=3;
         [UIView animateWithDuration:0.5f animations:^{
-            tipsTextView.backgroundColor=[UIColor colorWithRed:120/255.f green:255 blue:120/255.f alpha:1];
+            tipsTextView.backgroundColor=[UIColor colorWithRed:154/255.f green:255 blue:154/255.f alpha:0.9];
+            
         } completion:^(BOOL finished) {
             
         }];
     }else if (button.tag==4){
         color=4;
         [UIView animateWithDuration:0.5f animations:^{
-            tipsTextView.backgroundColor=[UIColor colorWithRed:120/255.f green:120/255.f blue:255 alpha:1];
+            tipsTextView.backgroundColor=[UIColor colorWithRed:99/255.f green:184/255.f blue:255 alpha:0.9];
+            
         } completion:^(BOOL finished) {
             
         }];
@@ -227,10 +234,19 @@ int color=1;
     }else if (button.tag==5){
         if (isDone==0) {
             
+            CGFloat fixedWidth = tipsTextView.frame.size.width;
+            CGSize newSize = [tipsTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+            CGRect newFrame = tipsTextView.frame;
+            newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+            
             if (tipsTextView.text.length==0) {
                 UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, Content Cannot Be Nil" delegate:nil cancelButtonTitle:@"Write Something" otherButtonTitles:nil, nil];
                 [alt show];
-            }else{
+            }else if (newFrame.size.height>999){
+                UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, Content Is Overloaded" delegate:nil cancelButtonTitle:@"Delete Something" otherButtonTitles:nil, nil];
+                [alt show];
+            }
+            else{
                 isDone=1;
                 [tipsTextView resignFirstResponder];
                 
@@ -248,48 +264,33 @@ int color=1;
             }
             
         }else{
-            NSLog(@"realDone");
-            [self makeNotification];
-            [self writeToPlist];
-            
-            [UIView animateWithDuration:0.5f animations:^{
-                self.frame=CGRectMake(0, self.bounds.size.height, self.bounds.size.width, self.bounds.size.height);
+            if ([self isSuitable]==0) {
+                UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"Sorry, You Can Not Set A Time Less Than 3 Min!" delegate:nil cancelButtonTitle:@"Reset Time" otherButtonTitles:nil, nil];
+                [alt show];
+            }else{
+                NSLog(@"realDone");
+                [self makeNotification];
+                [self writeToPlist];
                 
-            } completion:^(BOOL finished) {
-                [self removeFromSuperview];
-            }];
+                [UIView animateWithDuration:0.5f animations:^{
+                    self.frame=CGRectMake(0, self.bounds.size.height, self.bounds.size.width, self.bounds.size.height);
+                    
+                } completion:^(BOOL finished) {
+                    [self removeFromSuperview];
+                }];
+            }
+            
         }
     }
 }
 
 - (void)makeNotification{
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-	
-	// Get the current date
-	NSDate *pickerDate = [self.datePicker date];
-	
-	// Break the date up into components
-	NSDateComponents *dateComponents = [calendar components:( NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit )
-												   fromDate:pickerDate];
-	NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit )
-												   fromDate:pickerDate];
-	
-	// Set up the fire time
-    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
-    [dateComps setDay:[dateComponents day]];
-    [dateComps setMonth:[dateComponents month]];
-    [dateComps setYear:[dateComponents year]];
-    [dateComps setHour:[timeComponents hour]];
-	// Notification will fire in one minute
-    [dateComps setMinute:[timeComponents minute]];
-	[dateComps setSecond:[timeComponents second]];
-    NSDate *itemDate = [calendar dateFromComponents:dateComps];
 	
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
         return;
     localNotif.fireDate = itemDate;
-    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+//    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
 	
 	// Notification details
@@ -300,12 +301,29 @@ int color=1;
     localNotif.soundName = UILocalNotificationDefaultSoundName;
     localNotif.applicationIconBadgeNumber = 1;
 	
+    if (tipsTextView.text.length<8) {
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:[NSString stringWithFormat:@"%@",tipsTextView.text]];
+        localNotif.userInfo = infoDict;
+        notifyName=[NSString stringWithFormat:@"%@",tipsTextView.text];
+    }else{
+        NSString *string1 = tipsTextView.text;
+        NSString *string2 = [string1 substringToIndex:7];
+        string2=[string2 stringByAppendingString:@"..."];
+        NSLog(@"string2:%@",string2);
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:[NSString stringWithFormat:@"%@",string2]];
+        localNotif.userInfo = infoDict;
+        notifyName=[NSString stringWithFormat:@"%@",string2];
+    }
 	// Specify custom data for the notification
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
-    localNotif.userInfo = infoDict;
+    
 	
 	// Schedule the notification
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+    
+    for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSLog(@"info=%@",noti.userInfo);
+        
+    }
 }
 
 - (void)writeToPlist{
@@ -318,7 +336,7 @@ int color=1;
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
     [[data objectForKey:@"text"]addObject:tipsTextView.text];
     
-    NSDate* now = [NSDate date];
+    NSDate* now = itemDate;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
@@ -328,13 +346,84 @@ int color=1;
     NSInteger day=[comps day];
     NSInteger hour=[comps hour];
     NSInteger min=[comps minute];
-    NSString *timeString=[NSString stringWithFormat:@"%ld-%ld %ld:%ld",(long)month,(long)day,(long)hour,(long)min];
+    timeString=[NSString stringWithFormat:@"%ld-%ld %ld:%ld",(long)month,(long)day,(long)hour,(long)min];
     [[data objectForKey:@"time"]addObject:timeString];
     [[data objectForKey:@"color"]addObject:[NSString stringWithFormat:@"%d",color]];
-    
+    [[data objectForKey:@"notifyName"]addObject:[NSString stringWithFormat:@"%@",notifyName]];
     [data writeToFile:filename atomically:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewTips" object:@"NewTips"];
+}
+
+- (BOOL)isSuitable{
+    
+    NSCalendar *calendar_s = [NSCalendar autoupdatingCurrentCalendar];
+	
+	// Get the current date
+	NSDate *pickerDate = [self.datePicker date];
+	
+	// Break the date up into components
+	NSDateComponents *dateComponents = [calendar_s components:( NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit )
+												   fromDate:pickerDate];
+	NSDateComponents *timeComponents = [calendar_s components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit )
+												   fromDate:pickerDate];
+	
+	// Set up the fire time
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:[dateComponents day]];
+    [dateComps setMonth:[dateComponents month]];
+    [dateComps setYear:[dateComponents year]];
+    [dateComps setHour:[timeComponents hour]];
+	// Notification will fire in one minute
+    [dateComps setMinute:[timeComponents minute]];
+	[dateComps setSecond:[timeComponents second]];
+    itemDate = [calendar_s dateFromComponents:dateComps];
+    
+    NSDate* set = itemDate;
+    NSCalendar *calendar_set = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps_set = [[NSDateComponents alloc] init];
+    NSInteger unitFlags_set = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps_set = [calendar_set components:unitFlags_set fromDate:set];
+    NSInteger year_set=[comps_set year];
+    NSInteger month_set=[comps_set month];
+    NSInteger day_set=[comps_set day];
+    NSInteger hour_set=[comps_set hour];
+    NSInteger min_set=[comps_set minute];
+    
+    NSDate* now = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:now];
+    NSInteger year=[comps year];
+    NSInteger month=[comps month];
+    NSInteger day=[comps day];
+    NSInteger hour=[comps hour];
+    NSInteger min=[comps minute];
+    
+    if (year_set<year) {
+        return 0;
+    }else{
+        if (month_set<month) {
+            return 0;
+        }else{
+            if (day_set<day) {
+                return 0;
+            }else{
+                if (hour_set<hour) {
+                    return 0;
+                }else{
+                    if (min_set-3<min) {
+                        return 0;
+                    }else{
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @end

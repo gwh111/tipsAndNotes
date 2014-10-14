@@ -37,6 +37,8 @@
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
 	// Handle the notificaton when the app is running
 	NSLog(@"Recieved Notification %@",notif);
+    app.applicationIconBadgeNumber=0;
+    
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
 //                          
 //                                                    message:notif.alertBody
