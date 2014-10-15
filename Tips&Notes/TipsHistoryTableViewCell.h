@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TipsHistoryTableViewCell : UITableViewCell{
+@interface TipsHistoryTableViewCell : UITableViewCell<UIAlertViewDelegate>{
     UILabel *timeHistoryLabel;
     UITextView *contentHistoryTextView;
+    UIButton *deleteButton;
 }
 
 @property (nonatomic,retain)IBOutlet UILabel *timeHistoryLabel;
 @property (nonatomic,retain)IBOutlet UITextView *contentHistoryTextView;
+@property (nonatomic,retain)IBOutlet UIButton *deletButton;
 
 @end

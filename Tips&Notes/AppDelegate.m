@@ -25,11 +25,17 @@
     self.window.rootViewController=navController;
     
 //    // Handle launching from a notification
-//	UILocalNotification *localNotif =
-//	[launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-//    if (localNotif) {
-//		NSLog(@"111Recieved Notification %@",localNotif);
-//	}
+	UILocalNotification *localNotif =
+	[launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+		NSLog(@"111Recieved Notification %@",localNotif.alertBody);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:[NSString stringWithFormat:@"'%@' Is Time Up!!",localNotif.alertBody]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+	}
     
     return YES;
 }
@@ -39,18 +45,13 @@
 	NSLog(@"Recieved Notification %@",notif);
     app.applicationIconBadgeNumber=0;
     
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-//                          
-//                                                    message:notif.alertBody
-//                          
-//                                                   delegate:nil
-//                          
-//                                          cancelButtonTitle:@"确定"
-//                          
-//                                          otherButtonTitles:nil];
-//    
-//    [alert show];
-    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:[NSString stringWithFormat:@"'%@' Is Time Up!",notif.alertBody]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Remove" object:[notif alertBody]];
     //这里，你就可以通过notification的useinfo，干一些你想做的事情了
 }
 

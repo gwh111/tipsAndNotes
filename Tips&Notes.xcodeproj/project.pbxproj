@@ -25,6 +25,29 @@
 		1856826419E6882D00B5E273 /* History.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1856826319E6882D00B5E273 /* History.plist */; };
 		1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1856826619E689A400B5E273 /* TipsTableViewCell.m */; };
 		1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1856826719E689A400B5E273 /* TipsTableViewCell.xib */; };
+		187099A019EE19C200B36171 /* more1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1870999F19EE19C200B36171 /* more1.png */; };
+		187099A419EE1BEF00B36171 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099A119EE1BEF00B36171 /* back.png */; };
+		187099A519EE1BEF00B36171 /* complete.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099A219EE1BEF00B36171 /* complete.png */; };
+		187099A619EE1BEF00B36171 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099A319EE1BEF00B36171 /* trash.png */; };
+		187099A819EE204F00B36171 /* trash1.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099A719EE204F00B36171 /* trash1.png */; };
+		187099AA19EE39D600B36171 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099A919EE39D600B36171 /* edit.png */; };
+		187099B019EE3DDE00B36171 /* EditTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187099AF19EE3DDE00B36171 /* EditTipsView.m */; };
+		187099B419EE539000B36171 /* NotesAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187099B319EE539000B36171 /* NotesAddViewController.m */; };
+		187099B719EE58BE00B36171 /* DKCircleButtonNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 187099B619EE58BE00B36171 /* DKCircleButtonNote.m */; };
+		187099BD19EE594E00B36171 /* mark1.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099B819EE594E00B36171 /* mark1.png */; };
+		187099BE19EE594E00B36171 /* mark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099B919EE594E00B36171 /* mark2.png */; };
+		187099BF19EE594E00B36171 /* mark3.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099BA19EE594E00B36171 /* mark3.png */; };
+		187099C019EE594E00B36171 /* mark4.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099BB19EE594E00B36171 /* mark4.png */; };
+		187099C119EE594E00B36171 /* mark5.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099BC19EE594E00B36171 /* mark5.png */; };
+		187099C719EE5BB200B36171 /* mark1_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099C219EE5BB200B36171 /* mark1_h.png */; };
+		187099C819EE5BB200B36171 /* mark2_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099C319EE5BB200B36171 /* mark2_h.png */; };
+		187099C919EE5BB200B36171 /* mark3_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099C419EE5BB200B36171 /* mark3_h.png */; };
+		187099CA19EE5BB200B36171 /* mark4_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099C519EE5BB200B36171 /* mark4_h.png */; };
+		187099CB19EE5BB200B36171 /* mark5_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099C619EE5BB200B36171 /* mark5_h.png */; };
+		187099CF19EE632800B36171 /* NotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187099CD19EE632800B36171 /* NotesTableViewCell.m */; };
+		187099D019EE632800B36171 /* NotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187099CE19EE632800B36171 /* NotesTableViewCell.xib */; };
+		187099D319EE6A3300B36171 /* NotesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187099D219EE6A3300B36171 /* NotesDetailViewController.m */; };
+		187099D519EE6FA700B36171 /* trash2.png in Resources */ = {isa = PBXBuildFile; fileRef = 187099D419EE6FA700B36171 /* trash2.png */; };
 		189C767719EBA7F600F4F0D5 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 189C767619EBA7F600F4F0D5 /* clock.png */; };
 		18B1490E19E77E9E00517F4A /* NewTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1490D19E77E9E00517F4A /* NewTipsView.m */; };
 		18B1491219E7873700517F4A /* DKCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1491119E7873700517F4A /* DKCircleButton.m */; };
@@ -72,6 +95,34 @@
 		1856826519E689A400B5E273 /* TipsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsTableViewCell.h; sourceTree = "<group>"; };
 		1856826619E689A400B5E273 /* TipsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsTableViewCell.m; sourceTree = "<group>"; };
 		1856826719E689A400B5E273 /* TipsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsTableViewCell.xib; sourceTree = "<group>"; };
+		1870999F19EE19C200B36171 /* more1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more1.png; sourceTree = "<group>"; };
+		187099A119EE1BEF00B36171 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		187099A219EE1BEF00B36171 /* complete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = complete.png; sourceTree = "<group>"; };
+		187099A319EE1BEF00B36171 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
+		187099A719EE204F00B36171 /* trash1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash1.png; sourceTree = "<group>"; };
+		187099A919EE39D600B36171 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		187099AE19EE3DDE00B36171 /* EditTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTipsView.h; sourceTree = "<group>"; };
+		187099AF19EE3DDE00B36171 /* EditTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTipsView.m; sourceTree = "<group>"; };
+		187099B219EE539000B36171 /* NotesAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesAddViewController.h; sourceTree = "<group>"; };
+		187099B319EE539000B36171 /* NotesAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesAddViewController.m; sourceTree = "<group>"; };
+		187099B519EE58BE00B36171 /* DKCircleButtonNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButtonNote.h; sourceTree = "<group>"; };
+		187099B619EE58BE00B36171 /* DKCircleButtonNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButtonNote.m; sourceTree = "<group>"; };
+		187099B819EE594E00B36171 /* mark1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark1.png; sourceTree = "<group>"; };
+		187099B919EE594E00B36171 /* mark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark2.png; sourceTree = "<group>"; };
+		187099BA19EE594E00B36171 /* mark3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark3.png; sourceTree = "<group>"; };
+		187099BB19EE594E00B36171 /* mark4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark4.png; sourceTree = "<group>"; };
+		187099BC19EE594E00B36171 /* mark5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark5.png; sourceTree = "<group>"; };
+		187099C219EE5BB200B36171 /* mark1_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark1_h.png; sourceTree = "<group>"; };
+		187099C319EE5BB200B36171 /* mark2_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark2_h.png; sourceTree = "<group>"; };
+		187099C419EE5BB200B36171 /* mark3_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark3_h.png; sourceTree = "<group>"; };
+		187099C519EE5BB200B36171 /* mark4_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark4_h.png; sourceTree = "<group>"; };
+		187099C619EE5BB200B36171 /* mark5_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark5_h.png; sourceTree = "<group>"; };
+		187099CC19EE632800B36171 /* NotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewCell.h; sourceTree = "<group>"; };
+		187099CD19EE632800B36171 /* NotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewCell.m; sourceTree = "<group>"; };
+		187099CE19EE632800B36171 /* NotesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesTableViewCell.xib; sourceTree = "<group>"; };
+		187099D119EE6A3300B36171 /* NotesDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesDetailViewController.h; sourceTree = "<group>"; };
+		187099D219EE6A3300B36171 /* NotesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesDetailViewController.m; sourceTree = "<group>"; };
+		187099D419EE6FA700B36171 /* trash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash2.png; sourceTree = "<group>"; };
 		189C767619EBA7F600F4F0D5 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		18B1490C19E77E9E00517F4A /* NewTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTipsView.h; sourceTree = "<group>"; };
 		18B1490D19E77E9E00517F4A /* NewTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTipsView.m; sourceTree = "<group>"; };
@@ -125,11 +176,7 @@
 				18427EBF19E6728900BFC5CD /* AppDelegate.m */,
 				18427EC119E6728900BFC5CD /* ViewController.h */,
 				18427EC219E6728900BFC5CD /* ViewController.m */,
-				1807369E19ED196B00EE4F6A /* more.png */,
-				1807368319ECC41B00EE4F6A /* tipsbackground.png */,
-				189C767619EBA7F600F4F0D5 /* clock.png */,
-				18B1491319E7C3B000517F4A /* button.png */,
-				18B1491519E7C64200517F4A /* button_clear.png */,
+				187099B119EE4F6200B36171 /* 图片 */,
 				18B1490A19E77DCC00517F4A /* 纸条 */,
 				18B1490B19E77DD700517F4A /* 笔记 */,
 				18427EC419E6728900BFC5CD /* Main.storyboard */,
@@ -168,6 +215,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		187099B119EE4F6200B36171 /* 图片 */ = {
+			isa = PBXGroup;
+			children = (
+				187099C219EE5BB200B36171 /* mark1_h.png */,
+				187099C319EE5BB200B36171 /* mark2_h.png */,
+				187099C419EE5BB200B36171 /* mark3_h.png */,
+				187099C519EE5BB200B36171 /* mark4_h.png */,
+				187099C619EE5BB200B36171 /* mark5_h.png */,
+				187099B819EE594E00B36171 /* mark1.png */,
+				187099B919EE594E00B36171 /* mark2.png */,
+				187099BA19EE594E00B36171 /* mark3.png */,
+				187099BB19EE594E00B36171 /* mark4.png */,
+				187099BC19EE594E00B36171 /* mark5.png */,
+				187099A919EE39D600B36171 /* edit.png */,
+				187099A119EE1BEF00B36171 /* back.png */,
+				187099A219EE1BEF00B36171 /* complete.png */,
+				187099A719EE204F00B36171 /* trash1.png */,
+				187099D419EE6FA700B36171 /* trash2.png */,
+				187099A319EE1BEF00B36171 /* trash.png */,
+				1870999F19EE19C200B36171 /* more1.png */,
+				1807369E19ED196B00EE4F6A /* more.png */,
+				1807368319ECC41B00EE4F6A /* tipsbackground.png */,
+				189C767619EBA7F600F4F0D5 /* clock.png */,
+				18B1491319E7C3B000517F4A /* button.png */,
+				18B1491519E7C64200517F4A /* button_clear.png */,
+			);
+			name = "图片";
+			sourceTree = "<group>";
+		};
 		18B1490A19E77DCC00517F4A /* 纸条 */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +253,8 @@
 				1807369C19ED159A00EE4F6A /* HistoryViewController.m */,
 				18B1490C19E77E9E00517F4A /* NewTipsView.h */,
 				18B1490D19E77E9E00517F4A /* NewTipsView.m */,
+				187099AE19EE3DDE00B36171 /* EditTipsView.h */,
+				187099AF19EE3DDE00B36171 /* EditTipsView.m */,
 				1856826519E689A400B5E273 /* TipsTableViewCell.h */,
 				1856826619E689A400B5E273 /* TipsTableViewCell.m */,
 				1856826719E689A400B5E273 /* TipsTableViewCell.xib */,
@@ -192,6 +270,13 @@
 			children = (
 				1856825C19E6797100B5E273 /* NotesViewController.h */,
 				1856825D19E6797100B5E273 /* NotesViewController.m */,
+				187099B219EE539000B36171 /* NotesAddViewController.h */,
+				187099B319EE539000B36171 /* NotesAddViewController.m */,
+				187099D119EE6A3300B36171 /* NotesDetailViewController.h */,
+				187099D219EE6A3300B36171 /* NotesDetailViewController.m */,
+				187099CC19EE632800B36171 /* NotesTableViewCell.h */,
+				187099CD19EE632800B36171 /* NotesTableViewCell.m */,
+				187099CE19EE632800B36171 /* NotesTableViewCell.xib */,
 			);
 			name = "笔记";
 			sourceTree = "<group>";
@@ -201,6 +286,8 @@
 			children = (
 				18B1491019E7873700517F4A /* DKCircleButton.h */,
 				18B1491119E7873700517F4A /* DKCircleButton.m */,
+				187099B519EE58BE00B36171 /* DKCircleButtonNote.h */,
+				187099B619EE58BE00B36171 /* DKCircleButtonNote.m */,
 			);
 			path = DKCircleButton;
 			sourceTree = "<group>";
@@ -285,17 +372,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187099A819EE204F00B36171 /* trash1.png in Resources */,
+				187099BD19EE594E00B36171 /* mark1.png in Resources */,
+				187099D019EE632800B36171 /* NotesTableViewCell.xib in Resources */,
 				189C767719EBA7F600F4F0D5 /* clock.png in Resources */,
+				187099A519EE1BEF00B36171 /* complete.png in Resources */,
 				18B1491419E7C3B000517F4A /* button.png in Resources */,
 				180736A419ED217300EE4F6A /* TipsHistoryTableViewCell.xib in Resources */,
+				187099D519EE6FA700B36171 /* trash2.png in Resources */,
 				18427EC619E6728900BFC5CD /* Main.storyboard in Resources */,
+				187099A419EE1BEF00B36171 /* back.png in Resources */,
 				1856826019E687A500B5E273 /* Tips.plist in Resources */,
+				187099CA19EE5BB200B36171 /* mark4_h.png in Resources */,
+				187099C719EE5BB200B36171 /* mark1_h.png in Resources */,
+				187099C019EE594E00B36171 /* mark4.png in Resources */,
+				187099C819EE5BB200B36171 /* mark2_h.png in Resources */,
+				187099CB19EE5BB200B36171 /* mark5_h.png in Resources */,
+				187099BE19EE594E00B36171 /* mark2.png in Resources */,
 				1856826219E6881200B5E273 /* Notes.plist in Resources */,
 				1807368419ECC41B00EE4F6A /* tipsbackground.png in Resources */,
 				1807369F19ED196B00EE4F6A /* more.png in Resources */,
+				187099AA19EE39D600B36171 /* edit.png in Resources */,
+				187099C919EE5BB200B36171 /* mark3_h.png in Resources */,
 				18427EC819E6728900BFC5CD /* Images.xcassets in Resources */,
+				187099BF19EE594E00B36171 /* mark3.png in Resources */,
 				18B1491619E7C64200517F4A /* button_clear.png in Resources */,
+				187099A019EE19C200B36171 /* more1.png in Resources */,
 				1856826419E6882D00B5E273 /* History.plist in Resources */,
+				187099C119EE594E00B36171 /* mark5.png in Resources */,
+				187099A619EE1BEF00B36171 /* trash.png in Resources */,
 				1856826919E689A400B5E273 /* TipsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,11 +421,16 @@
 			files = (
 				18B1491219E7873700517F4A /* DKCircleButton.m in Sources */,
 				18B1490E19E77E9E00517F4A /* NewTipsView.m in Sources */,
+				187099B019EE3DDE00B36171 /* EditTipsView.m in Sources */,
 				1807369D19ED159A00EE4F6A /* HistoryViewController.m in Sources */,
+				187099B419EE539000B36171 /* NotesAddViewController.m in Sources */,
 				1856825E19E6797100B5E273 /* NotesViewController.m in Sources */,
+				187099B719EE58BE00B36171 /* DKCircleButtonNote.m in Sources */,
 				180736A319ED217300EE4F6A /* TipsHistoryTableViewCell.m in Sources */,
 				18427EC319E6728900BFC5CD /* ViewController.m in Sources */,
+				187099CF19EE632800B36171 /* NotesTableViewCell.m in Sources */,
 				18427EC019E6728900BFC5CD /* AppDelegate.m in Sources */,
+				187099D319EE6A3300B36171 /* NotesDetailViewController.m in Sources */,
 				1856826819E689A400B5E273 /* TipsTableViewCell.m in Sources */,
 				1856825B19E6796700B5E273 /* TipsViewController.m in Sources */,
 				18427EBD19E6728900BFC5CD /* main.m in Sources */,

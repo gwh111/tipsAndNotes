@@ -10,7 +10,7 @@
 #import "TipsTableViewCell.h"
 #import "DKCircleButton.h"
 #import "NewTipsView.h"
-
+#import "EditTipsView.h"
 #import "HistoryViewController.h"
 
 @interface TipsViewController ()
@@ -20,7 +20,7 @@
 NSMutableDictionary *tipsPlist;
 NSArray *heightArray;
 //newTips
-
+UILabel *hiLabel;
 id deleteObj;
 
 @implementation TipsViewController
@@ -42,21 +42,36 @@ id deleteObj;
     self.navigationController.navigationBarHidden=YES;
     self.view.backgroundColor=[UIColor colorWithRed:248/255.f green:248/255.f blue:248/255.f alpha:1];
     
+    hiLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-50, self.view.bounds.size.width, 100)];
+    hiLabel.text=@"Hi,I'm Empty !\n\n!!^_^";
+    hiLabel.numberOfLines=3;
+    hiLabel.backgroundColor=[UIColor clearColor];
+    hiLabel.textColor=[UIColor grayColor];
+    hiLabel.textAlignment=NSTextAlignmentCenter;
+    [self.view addSubview:hiLabel];
+    
     heightArray=[[NSArray alloc]init];
     tipsPlist=[[NSMutableDictionary alloc]init];
     [self readPlistFile];
     [self getTextViewHeight];
     
     UIImageView *navImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    navImageView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+    navImageView.backgroundColor=[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
     [self.view addSubview:navImageView];
     
     UIButton *historyButton=[UIButton buttonWithType:UIButtonTypeCustom];
     historyButton.backgroundColor=[UIColor clearColor];
-    historyButton.frame=CGRectMake(self.view.bounds.size.width-50, 20, 50, 50);
-    [historyButton setBackgroundImage:[UIImage imageNamed:@"more.png"] forState:UIControlStateNormal];
+    historyButton.frame=CGRectMake(self.view.bounds.size.width-50, 20, 44, 44);
+    [historyButton setBackgroundImage:[UIImage imageNamed:@"more1.png"] forState:UIControlStateNormal];
     [historyButton addTarget:self action:@selector(historyButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:historyButton];
+    
+    UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];
+    titleLabel.backgroundColor=[UIColor clearColor];
+    titleLabel.textColor=[UIColor whiteColor];
+    titleLabel.text=@"Tips";
+    titleLabel.textAlignment=NSTextAlignmentCenter;
+    [self.view addSubview:titleLabel];
     
     mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(5, 65, self.view.bounds.size.width-10, self.view.bounds.size.height-180)];
     mainTableView.delegate=self;
@@ -77,7 +92,12 @@ id deleteObj;
     addButton.tag=0;
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(renew:) name:@"NewTips" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(edit:) name:@"EditTips" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(delet:) name:@"DeleteTips" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(complete:) name:@"CompleteTips" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(remove:) name:@"Remove" object:nil];
+    
+
 }
 
 - (void)readPlistFile{
@@ -89,6 +109,11 @@ id deleteObj;
     //读出来看看
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
     tipsPlist=data;
+    if ([[tipsPlist objectForKey:@"text"]count]==0) {
+        hiLabel.alpha=1;
+    }else{
+        hiLabel.alpha=0;
+    }
 }
 - (void)writePlistFile{
     //获取应用程序沙盒的Documents目录
@@ -102,13 +127,11 @@ id deleteObj;
 - (void)deletePlistFile:(int)tag{
     for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
         NSLog(@"info=%@",noti.userInfo);
-        if ([[noti.userInfo objectForKey:[[tipsPlist objectForKey:@"notifyName"]objectAtIndex:tag]]isEqualToString:@"someValue"]) {
+        if ([[noti.userInfo objectForKey:[[tipsPlist objectForKey:@"notifyName"]objectAtIndex:tag]]isEqualToString:[tipsPlist objectForKey:@"notifyName"]]) {
             NSLog(@"cancel");
             [[UIApplication sharedApplication] cancelLocalNotification:noti];
         }
-        
-    }
-    
+    }    
     [[tipsPlist objectForKey:@"text"]removeObjectAtIndex:tag];
     [[tipsPlist objectForKey:@"time"]removeObjectAtIndex:tag];
     [[tipsPlist objectForKey:@"color"]removeObjectAtIndex:tag];
@@ -162,6 +185,7 @@ id deleteObj;
     return view;
 }
 
+//notification
 - (void) renew:(NSNotification*) notification{
     
     id obj = [notification object];//获取到传递的对象
@@ -173,14 +197,75 @@ id deleteObj;
         [mainTableView reloadData];
     }
 }
+- (void) edit:(NSNotification*) notification{
+    id obj = [notification object];//获取到传递的对象
+    NSLog(@"butt=%@",obj);
+    EditTipsView *newTipsView=[[EditTipsView alloc]initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+    newTipsView.tagStringEdit=[NSString stringWithFormat:@"%d",[obj intValue]];
+    [self.view addSubview:newTipsView];
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        newTipsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            newTipsView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        } completion:^(BOOL finished) {
+        }];
+    }];
+}
 - (void) delet:(NSNotification*) notification{
     id obj = [notification object];//获取到传递的对象
     NSLog(@"butt=%@",obj);
     
-    UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"This Process Can Not Be Recovered, Are You Sure To Delet?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Delete", nil];
+    UIAlertView *alt=[[UIAlertView alloc]initWithTitle:nil message:@"This Process Can Not Be Recovered, Are You Sure To Delet?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
     [alt show];
     deleteObj=obj;
 }
+- (void) complete:(NSNotification*) notification{
+    id obj = [notification object];//获取到传递的对象
+    NSLog(@"butt=%@",obj);
+    int tag=[obj intValue];
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"History.plist"];
+    //读出来看看
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
+    
+    [[data objectForKey:@"text"]addObject:[[tipsPlist objectForKey:@"text"]objectAtIndex:tag]];
+    [[data objectForKey:@"time"]addObject:[[tipsPlist objectForKey:@"time"]objectAtIndex:tag]];
+    [data writeToFile:filename atomically:YES];
+    
+    [self deletePlistFile:tag];
+}
+- (void) remove:(NSNotification*) notification{
+    NSUInteger tag=[[tipsPlist objectForKey:@"notifyName"]indexOfObject:[NSString stringWithFormat:@"%@",[notification object]]];
+    
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"History.plist"];
+    //读出来看看
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
+    
+    [[data objectForKey:@"text"]addObject:[[tipsPlist objectForKey:@"text"]objectAtIndex:tag]];
+    [[data objectForKey:@"time"]addObject:[[tipsPlist objectForKey:@"time"]objectAtIndex:tag]];
+    [data writeToFile:filename atomically:YES];
+    
+    [[tipsPlist objectForKey:@"text"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"time"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"color"]removeObjectAtIndex:tag];
+    [[tipsPlist objectForKey:@"notifyName"]removeObjectAtIndex:tag];
+    [self writePlistFile];
+    tipsPlist=[[NSMutableDictionary alloc]init];
+    [self readPlistFile];
+    [self getTextViewHeight];
+    [mainTableView reloadData];
+    
+}
+
 - (UIColor*) myColor:(int)colorNumber{
     UIColor *color=[UIColor clearColor];
     if (colorNumber==1) {
@@ -231,7 +316,7 @@ id deleteObj;
             newTipsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.5 animations:^{
-                newTipsView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+                newTipsView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
             } completion:^(BOOL finished) {
             }];
         }];

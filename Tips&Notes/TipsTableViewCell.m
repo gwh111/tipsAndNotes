@@ -57,9 +57,10 @@
     UIButton *button=(UIButton *)sender;
     
     if (button.tag==11111) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EditTips" object:[NSString stringWithFormat:@"%ld",(long)upButton.tag]];
     }else if (button.tag==22222){
         NSLog(@"taped2");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CompleteTips" object:[NSString stringWithFormat:@"%ld",(long)upButton.tag]];
     }else if (button.tag==33333){
         NSLog(@"taped3");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DeleteTips" object:[NSString stringWithFormat:@"%ld",(long)upButton.tag]];
