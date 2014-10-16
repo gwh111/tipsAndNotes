@@ -29,7 +29,7 @@
                         <rect key="frame" x="10" y="40" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="csd三个地方是的广告费高度热土和人体后发货吧" translatesAutoresizingMaskIntoConstraints="NO" id="waG-fD-EDh">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waG-fD-EDh">
                         <rect key="frame" x="10" y="59" width="280" height="1000"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

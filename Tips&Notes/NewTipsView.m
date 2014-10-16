@@ -333,7 +333,7 @@ NSString *timeString;
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *plistPath = [paths objectAtIndex:0];
     //得到完整的文件名
-    NSString *filename=[plistPath stringByAppendingPathComponent:@"tips.plist"];
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"Tips.plist"];
     //读出来看看
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
     [[data objectForKey:@"text"]addObject:tipsTextView.text];

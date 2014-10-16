@@ -20,23 +20,25 @@ NSMutableDictionary *tipsPlistEdit;
 
 @synthesize tipsTextViewEdit,nextButtonEdit,datePickerEdit,tagStringEdit;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andTag:(NSString *)tag
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Custom initialization
+        [self getContent];
         for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-            NSLog(@"info=%@",noti.userInfo);
-            if ([[noti.userInfo objectForKey:[[tipsPlistEdit objectForKey:@"notifyName"]objectAtIndex:[tagStringEdit intValue]]]isEqualToString:[tipsPlistEdit objectForKey:@"notifyName"]]) {
+//            NSLog(@"info=%@",noti.userInfo);
+            if ([[noti.userInfo objectForKey:[[tipsPlistEdit objectForKey:@"notifyName"]objectAtIndex:[tag intValue]]]isEqualToString:[tipsPlistEdit objectForKey:@"notifyName"]]) {
                 NSLog(@"cancel");
                 [[UIApplication sharedApplication] cancelLocalNotification:noti];
             }
         }
-        [self getContent];
+        colorEdit=[[[tipsPlistEdit objectForKey:@"color"]objectAtIndex:[tag intValue]]intValue];
+        
         self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         tipsTextViewEdit=[[UITextView alloc]initWithFrame:CGRectMake(10, 80, self.bounds.size.width-20, self.bounds.size.height-380)];
-        tipsTextViewEdit.backgroundColor=[self myColor:[[[tipsPlistEdit objectForKey:@"color"]objectAtIndex:[tagStringEdit intValue]]intValue]];
-        tipsTextViewEdit.text=[[tipsPlistEdit objectForKey:@"text"]objectAtIndex:[tagStringEdit intValue]];
+        tipsTextViewEdit.backgroundColor=[self myColor:[[[tipsPlistEdit objectForKey:@"color"]objectAtIndex:[tag intValue]]intValue]];
+        tipsTextViewEdit.text=[[tipsPlistEdit objectForKey:@"text"]objectAtIndex:[tag intValue]];
         tipsTextViewEdit.textColor=[UIColor blackColor];
         tipsTextViewEdit.font=[UIFont systemFontOfSize:14];
         [tipsTextViewEdit.layer setMasksToBounds:YES];
@@ -44,7 +46,8 @@ NSMutableDictionary *tipsPlistEdit;
         [self addSubview:tipsTextViewEdit];
         [tipsTextViewEdit becomeFirstResponder];
         tipsTextViewEdit.delegate=self;
-        
+        NSLog(@"tagStringEdit=%@",tag);
+        tagStringEdit=[NSString stringWithFormat:@"%@",tag];
         [self colorButton];
         
         UIImageView *whiteImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.bounds.size.height-190, 320, 190)];
@@ -340,7 +343,7 @@ NSMutableDictionary *tipsPlistEdit;
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *plistPath = [paths objectAtIndex:0];
     //得到完整的文件名
-    NSString *filename=[plistPath stringByAppendingPathComponent:@"tips.plist"];
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"Tips.plist"];
     //读出来看看
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
     [[data objectForKey:@"text"]addObject:tipsTextViewEdit.text];

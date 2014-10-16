@@ -41,6 +41,15 @@ int imgDetail=1;
     NSLog(@"string=%@",tagStringEdit);
     self.view.backgroundColor=[UIColor colorWithRed:228/255.f green:228/255.f blue:228/255.f alpha:1];
     
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"Notes.plist"];
+    //读出来看看
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:filename];
+    imgDetail=[[[data objectForKey:@"img"]objectAtIndex:[tagStringEdit intValue]]intValue];
+    
     UIImageView *navImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     navImageView.backgroundColor=[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
     [self.view addSubview:navImageView];
@@ -119,6 +128,8 @@ int imgDetail=1;
     [bt5 addTarget:self action:@selector(colorButton:) forControlEvents:UIControlEventTouchUpInside];
     bt5.tag=5;
     
+    [self initColor];
+    
     nextButtonEdit=[UIButton buttonWithType:UIButtonTypeCustom];
     nextButtonEdit.frame=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-90, 60, 30);
     nextButtonEdit.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
@@ -133,6 +144,39 @@ int imgDetail=1;
     [self.view addSubview:nextButtonEdit];
     [nextButtonEdit addTarget:self action:@selector(colorButton:) forControlEvents:UIControlEventTouchUpInside];
     nextButtonEdit.tag=6;
+}
+- (void)initColor{
+    if (imgDetail==1) {
+        [bt1 setBackgroundImage:[UIImage imageNamed:@"mark1_h.png"] forState:UIControlStateNormal];
+        [bt2 setBackgroundImage:[UIImage imageNamed:@"mark2.png"] forState:UIControlStateNormal];
+        [bt3 setBackgroundImage:[UIImage imageNamed:@"mark3.png"] forState:UIControlStateNormal];
+        [bt4 setBackgroundImage:[UIImage imageNamed:@"mark4.png"] forState:UIControlStateNormal];
+        [bt5 setBackgroundImage:[UIImage imageNamed:@"mark5.png"] forState:UIControlStateNormal];
+    }else if (imgDetail==2){
+        [bt1 setBackgroundImage:[UIImage imageNamed:@"mark1.png"] forState:UIControlStateNormal];
+        [bt2 setBackgroundImage:[UIImage imageNamed:@"mark2_h.png"] forState:UIControlStateNormal];
+        [bt3 setBackgroundImage:[UIImage imageNamed:@"mark3.png"] forState:UIControlStateNormal];
+        [bt4 setBackgroundImage:[UIImage imageNamed:@"mark4.png"] forState:UIControlStateNormal];
+        [bt5 setBackgroundImage:[UIImage imageNamed:@"mark5.png"] forState:UIControlStateNormal];
+    }else if (imgDetail==3){
+        [bt1 setBackgroundImage:[UIImage imageNamed:@"mark1.png"] forState:UIControlStateNormal];
+        [bt2 setBackgroundImage:[UIImage imageNamed:@"mark2.png"] forState:UIControlStateNormal];
+        [bt3 setBackgroundImage:[UIImage imageNamed:@"mark3_h.png"] forState:UIControlStateNormal];
+        [bt4 setBackgroundImage:[UIImage imageNamed:@"mark4.png"] forState:UIControlStateNormal];
+        [bt5 setBackgroundImage:[UIImage imageNamed:@"mark5.png"] forState:UIControlStateNormal];
+    }else if (imgDetail==4){
+        [bt1 setBackgroundImage:[UIImage imageNamed:@"mark1.png"] forState:UIControlStateNormal];
+        [bt2 setBackgroundImage:[UIImage imageNamed:@"mark2.png"] forState:UIControlStateNormal];
+        [bt3 setBackgroundImage:[UIImage imageNamed:@"mark3.png"] forState:UIControlStateNormal];
+        [bt4 setBackgroundImage:[UIImage imageNamed:@"mark4_h.png"] forState:UIControlStateNormal];
+        [bt5 setBackgroundImage:[UIImage imageNamed:@"mark5.png"] forState:UIControlStateNormal];
+    }else if (imgDetail==5){
+        [bt1 setBackgroundImage:[UIImage imageNamed:@"mark1.png"] forState:UIControlStateNormal];
+        [bt2 setBackgroundImage:[UIImage imageNamed:@"mark2.png"] forState:UIControlStateNormal];
+        [bt3 setBackgroundImage:[UIImage imageNamed:@"mark3.png"] forState:UIControlStateNormal];
+        [bt4 setBackgroundImage:[UIImage imageNamed:@"mark4.png"] forState:UIControlStateNormal];
+        [bt5 setBackgroundImage:[UIImage imageNamed:@"mark5_h.png"] forState:UIControlStateNormal];
+    }
 }
 - (void)colorButton:(id)sender{
     UIButton *button=(UIButton *)sender;

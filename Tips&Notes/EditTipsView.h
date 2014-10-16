@@ -20,4 +20,6 @@
 @property(nonatomic,retain)UIDatePicker *datePickerEdit;
 @property(nonatomic,retain)NSString *tagStringEdit;
 
+- (id)initWithFrame:(CGRect)frame andTag:(NSString *)tag;
+
 @end

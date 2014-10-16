@@ -37,7 +37,7 @@ UILabel *historyLabel;
     self.view.backgroundColor=[UIColor colorWithRed:248/255.f green:248/255.f blue:248/255.f alpha:1];
     
     historyLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-50, self.view.bounds.size.width, 100)];
-    historyLabel.text=@"Hi,History Box is Empty !\n\n!!^_^";
+    historyLabel.text=@"Hi, History Box is Empty !\n\n!!^_^";
     historyLabel.numberOfLines=3;
     historyLabel.backgroundColor=[UIColor clearColor];
     historyLabel.textColor=[UIColor grayColor];

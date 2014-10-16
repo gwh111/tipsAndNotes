@@ -12,8 +12,8 @@
 #import "NewTipsView.h"
 #import "EditTipsView.h"
 #import "HistoryViewController.h"
-
-@interface TipsViewController ()
+#import "GADBannerView.h"
+@interface TipsViewController ()<GADBannerViewDelegate>
 
 @end
 
@@ -22,6 +22,7 @@ NSArray *heightArray;
 //newTips
 UILabel *hiLabel;
 id deleteObj;
+GADBannerView *banner;
 
 @implementation TipsViewController
 @synthesize mainTableView;
@@ -43,7 +44,7 @@ id deleteObj;
     self.view.backgroundColor=[UIColor colorWithRed:248/255.f green:248/255.f blue:248/255.f alpha:1];
     
     hiLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height/2-50, self.view.bounds.size.width, 100)];
-    hiLabel.text=@"Hi,I'm Empty !\n\n!!^_^";
+    hiLabel.text=@"Hi, I'm Empty !\n\n!!^_^";
     hiLabel.numberOfLines=3;
     hiLabel.backgroundColor=[UIColor clearColor];
     hiLabel.textColor=[UIColor grayColor];
@@ -61,10 +62,16 @@ id deleteObj;
     
     UIButton *historyButton=[UIButton buttonWithType:UIButtonTypeCustom];
     historyButton.backgroundColor=[UIColor clearColor];
-    historyButton.frame=CGRectMake(self.view.bounds.size.width-50, 20, 44, 44);
+    historyButton.frame=CGRectMake(self.view.bounds.size.width-50, 22, 44, 44);
     [historyButton setBackgroundImage:[UIImage imageNamed:@"more1.png"] forState:UIControlStateNormal];
     [historyButton addTarget:self action:@selector(historyButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:historyButton];
+    
+    UIButton *homeButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [homeButton setBackgroundImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
+    homeButton.frame=CGRectMake(0, 20, 50, 50);
+    [self.view addSubview:homeButton];
+    [homeButton addTarget:self action:@selector(homeButton) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];
     titleLabel.backgroundColor=[UIColor clearColor];
@@ -97,7 +104,14 @@ id deleteObj;
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(complete:) name:@"CompleteTips" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(remove:) name:@"Remove" object:nil];
     
-
+    banner = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 0, GAD_SIZE_320x50.width, GAD_SIZE_320x50.height)];
+    banner.adUnitID = @"ca-app-pub-5564518885724507/7530478472";
+    banner.rootViewController = self;
+    GADRequest *request;
+    request.testDevices = @[ GAD_SIMULATOR_ID,@"MY_TEST_DEVICE_ID" ];
+    banner.delegate=self;
+    [banner loadRequest:request];
+    [self.view addSubview:banner];
 }
 
 - (void)readPlistFile{
@@ -126,7 +140,7 @@ id deleteObj;
 }
 - (void)deletePlistFile:(int)tag{
     for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        NSLog(@"info=%@",noti.userInfo);
+//        NSLog(@"info=%@",noti.userInfo);
         if ([[noti.userInfo objectForKey:[[tipsPlist objectForKey:@"notifyName"]objectAtIndex:tag]]isEqualToString:[tipsPlist objectForKey:@"notifyName"]]) {
             NSLog(@"cancel");
             [[UIApplication sharedApplication] cancelLocalNotification:noti];
@@ -145,7 +159,7 @@ id deleteObj;
 
 //tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [[tipsPlist objectForKey:@"text"]count];
+    return [[tipsPlist objectForKey:@"text"]count]+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -153,7 +167,11 @@ id deleteObj;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [[heightArray objectAtIndex:indexPath.section]floatValue]+65;
+    if (indexPath.section==0) {
+        return 50;
+    }else{
+        return [[heightArray objectAtIndex:indexPath.section-1]floatValue]+65;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -163,12 +181,19 @@ id deleteObj;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TipsTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.contentTextView.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section];
-    cell.timeLabel.text=[[tipsPlist objectForKey:@"time"]objectAtIndex:indexPath.section];
-    cell.upButton.tag=indexPath.section;
-    cell.backgroundColor=[self myColor:[[[tipsPlist objectForKey:@"color"]objectAtIndex:indexPath.section]intValue]];
-    [cell.layer setMasksToBounds:YES];
-    [cell.layer setCornerRadius:5.0];//设置矩形四个圆角半径
+    if (indexPath.section==0) {
+        UIImageView *whiteImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 55)];
+        whiteImageView.backgroundColor=[UIColor whiteColor];
+        [cell addSubview:whiteImageView];
+        [cell addSubview:banner];
+    }else{
+        cell.contentTextView.text=[[tipsPlist objectForKey:@"text"]objectAtIndex:indexPath.section-1];
+        cell.timeLabel.text=[[tipsPlist objectForKey:@"time"]objectAtIndex:indexPath.section-1];
+        cell.upButton.tag=indexPath.section-1;
+        cell.backgroundColor=[self myColor:[[[tipsPlist objectForKey:@"color"]objectAtIndex:indexPath.section-1]intValue]];
+        [cell.layer setMasksToBounds:YES];
+        [cell.layer setCornerRadius:5.0];//设置矩形四个圆角半径
+    }
     return cell;
 }
 
@@ -200,8 +225,7 @@ id deleteObj;
 - (void) edit:(NSNotification*) notification{
     id obj = [notification object];//获取到传递的对象
     NSLog(@"butt=%@",obj);
-    EditTipsView *newTipsView=[[EditTipsView alloc]initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
-    newTipsView.tagStringEdit=[NSString stringWithFormat:@"%d",[obj intValue]];
+    EditTipsView *newTipsView=[[EditTipsView alloc]initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height) andTag:[NSString stringWithFormat:@"%d",[obj intValue]]];
     [self.view addSubview:newTipsView];
     
     [UIView animateWithDuration:0.5f animations:^{
@@ -296,7 +320,7 @@ id deleteObj;
         
         heightArray=[heightArray arrayByAddingObject:height];
     }
-    NSLog(@"content=%@",heightArray);
+    NSLog(@"tips=%@content=%@",[tipsPlist objectForKey:@"text"],heightArray);
 }
 
 - (void)didReceiveMemoryWarning
@@ -326,6 +350,10 @@ id deleteObj;
 - (void)historyButton{
     HistoryViewController *history=[[HistoryViewController alloc]init];
     [self.navigationController pushViewController:history animated:YES];
+}
+
+- (void)homeButton{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lock" object:@"Lock"];
 }
 
 /*

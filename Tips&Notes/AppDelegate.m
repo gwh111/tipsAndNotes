@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
+#import "FirstLaunchViewController.h"
+#import "LaunchWithPasswardViewController.h"
 @interface AppDelegate ()
             
 
@@ -19,10 +20,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    ViewController *appStartController = [[ViewController alloc] init];
-    UINavigationController *navController =[[UINavigationController alloc] initWithRootViewController:appStartController];
-    navController.navigationBarHidden=YES;
-    self.window.rootViewController=navController;
+    
+    FirstLaunchViewController *firstLauchController=[[FirstLaunchViewController alloc]init];
+    LaunchWithPasswardViewController *launchWithPasswardViewController=[[LaunchWithPasswardViewController alloc]init];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"First"]==nil) {
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"1"] forKey:@"YANSE"];
+        
+        for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+            NSLog(@"info=%@",noti.userInfo);
+            [[UIApplication sharedApplication] cancelLocalNotification:noti];
+        }
+        
+        UINavigationController *navController =[[UINavigationController alloc] initWithRootViewController:firstLauchController];
+        navController.navigationBarHidden=YES;
+        self.window.rootViewController=navController;
+    }else{
+        UINavigationController *navController =[[UINavigationController alloc] initWithRootViewController:launchWithPasswardViewController];
+        navController.navigationBarHidden=YES;
+        self.window.rootViewController=navController;
+    }
+   
     
 //    // Handle launching from a notification
 	UILocalNotification *localNotif =
@@ -35,6 +52,7 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
         [alert show];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Remove" object:[localNotif alertBody]];
 	}
     
     return YES;

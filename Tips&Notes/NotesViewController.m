@@ -48,6 +48,12 @@ UITableView *mainNotesTableView;
     titleLabel.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:titleLabel];
     
+    UIButton *homeButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [homeButton setBackgroundImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
+    homeButton.frame=CGRectMake(0, 20, 50, 50);
+    [self.view addSubview:homeButton];
+    [homeButton addTarget:self action:@selector(homeButton) forControlEvents:UIControlEventTouchUpInside];
+    
     DKCircleButtonNote *addButton = [[DKCircleButtonNote alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     addButton.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-80);
     addButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -146,6 +152,10 @@ UITableView *mainNotesTableView;
 - (void)buttonTapped{
     NotesAddViewController *add=[[NotesAddViewController alloc]init];
     [self.navigationController pushViewController:add animated:YES];
+}
+
+- (void)homeButton{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lock" object:@"Lock"];
 }
 
 - (void)didReceiveMemoryWarning

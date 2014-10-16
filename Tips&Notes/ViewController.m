@@ -10,6 +10,7 @@
 #import "TipsViewController.h"
 #import "NotesViewController.h"
 #include <dlfcn.h>
+#import "SetPasswardViewController.h"
 @interface ViewController ()
 
 @end
@@ -21,6 +22,8 @@ UINavigationController *nav2;
 
 UIButton *tabBarButton1;
 UIButton *tabBarButton2;
+
+UIButton *homeButton;
 
 @implementation ViewController
             
@@ -71,10 +74,12 @@ UIButton *tabBarButton2;
     [tabBarButton2 addTarget:self action:@selector(tabBarButton:) forControlEvents:UIControlEventTouchUpInside];
     tabBarButton2.tag=2;
     
-
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(lock:) name:@"Lock" object:nil];
 }
 
-
+- (void) lock:(NSNotification*) notification{
+    [self homeButton];
+}
 
 - (void)firestLaunch{
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Tips"]==nil) {
@@ -144,5 +149,12 @@ UIButton *tabBarButton2;
         [tabBarButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
 }
-
+- (void)homeButton{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"NeedPassward"]==nil) {
+        SetPasswardViewController *set=[[SetPasswardViewController alloc]init];
+        [self.navigationController pushViewController:set animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 @end
